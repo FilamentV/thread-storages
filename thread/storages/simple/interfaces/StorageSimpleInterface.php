@@ -1,6 +1,7 @@
 <?php
 
 namespace thread\storages\simple\interfaces;
+
 /**
  * Interface StorageSimple
  *
