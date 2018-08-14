@@ -1,0 +1,32 @@
+{
+  "name": "thread/storages",
+  "description": "Php Storages",
+  "keywords": [
+    "storage"
+  ],
+  "homepage": "http://bu",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Filament",
+      "email": "vortex.filament@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^5.4|^7.0",
+    "ext-intl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "thread\\": "thread"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.2.x-dev"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.3"
+  }
+}
