@@ -56,7 +56,7 @@ class StoragesReadOnlyService
             return $default;
         }
         /**
-         * @var $s StorageReadOnly
+         * @var $s StorageReadOnlyInterface
          */
         $s = $this->storages[$this->currency];
         return $s->get($key, $default);
@@ -74,10 +74,35 @@ class StoragesReadOnlyService
             return $default;
         }
         /**
-         * @var $s StorageReadOnly
+         * @var $s StorageReadOnlyInterface
          */
         $s = $this->storages[$storage];
         return $s->get($key, $default);
+    }
+
+    /**
+     * @param null $default
+     * @return mixed|null
+     */
+    public function getAllData($default = null)
+    {
+        if (!$this->hasStorage($this->currency)) {
+            return $default;
+        }
+        return $this->storages[$this->currency];
+    }
+
+    /**
+     * @param string $storage
+     * @param null $default
+     * @return mixed|null
+     */
+    public function getAllStorageData(string $storage, $default = null)
+    {
+        if (!$this->hasStorage($storage)) {
+            return $default;
+        }
+        return $this->storages[$storage];
     }
 
     /**
