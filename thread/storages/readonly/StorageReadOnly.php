@@ -68,7 +68,7 @@ class StorageReadOnly implements StorageReadOnlyInterface
     /**
      * @return array
      */
-    public function getData()
+    public function getAllData()
     {
         return $this->data;
     }

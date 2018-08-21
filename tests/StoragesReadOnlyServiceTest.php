@@ -59,4 +59,37 @@ class StoragesReadOnlyServiceTest extends TestCase
         ]));
         $this->assertEquals('one', $obj->getStorageData('test', '0'), __CLASS__ . '/' . __LINE__);
     }
+
+    /**
+     *
+     */
+    public function testGetCurrencyStorageData()
+    {
+        $obj = new StoragesReadOnlyService();
+        $obj->addStorage('test', new StorageReadOnly([
+            '0' => 'one',
+            '1' => 'two',
+        ]));
+        $obj->setCurrency('test');
+        $this->assertEquals([
+            '0' => 'one',
+            '1' => 'two',
+        ], $obj->getAllData(), __CLASS__ . '/' . __LINE__);
+    }
+
+    /**
+     *
+     */
+    public function testGetDataInStorage()
+    {
+        $obj = new StoragesReadOnlyService();
+        $obj->addStorage('test', new StorageReadOnly([
+            '0' => 'one',
+            '1' => 'two',
+        ]));
+        $this->assertEquals([
+            '0' => 'one',
+            '1' => 'two',
+        ], $obj->getAllStorageData('test'), __CLASS__ . '/' . __LINE__);
+    }
 }

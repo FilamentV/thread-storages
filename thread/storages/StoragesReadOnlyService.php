@@ -18,7 +18,7 @@ class StoragesReadOnlyService
      */
     private $storages = [];
     /**
-     * @var null
+     * @var StorageReadOnlyInterface|null
      */
     private $currency = null;
 
@@ -89,7 +89,11 @@ class StoragesReadOnlyService
         if (!$this->hasStorage($this->currency)) {
             return $default;
         }
-        return $this->storages[$this->currency];
+        /**
+         * @var $storage StorageReadOnlyInterface
+         */
+        $storage = $this->storages[$this->currency];
+        return $storage->getAllData();
     }
 
     /**
@@ -102,7 +106,11 @@ class StoragesReadOnlyService
         if (!$this->hasStorage($storage)) {
             return $default;
         }
-        return $this->storages[$storage];
+        /**
+         * @var $s StorageReadOnlyInterface
+         */
+        $s = $this->storages[$storage];
+        return $s->getAllData();
     }
 
     /**

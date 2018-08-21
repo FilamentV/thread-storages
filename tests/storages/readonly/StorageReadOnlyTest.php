@@ -38,6 +38,24 @@ class StorageReadOnlyTest extends TestCase
     }
 
     /**
+     * @dataProvider dataProviderGet
+     */
+    public function testAllData($data, $key)
+    {
+        $obj = new StorageReadOnly($data);
+        $this->assertEquals(2, count($obj->getAllData()), __CLASS__ . '/' . __LINE__);
+    }
+
+    /**
+     * @dataProvider dataProviderGet
+     */
+    public function testGetKeys($data, $key)
+    {
+        $obj = new StorageReadOnly($data);
+        $this->assertEquals(2, count($obj->getKeys()), __CLASS__ . '/' . __LINE__);
+    }
+
+    /**
      * @return array
      */
     public function dataProvider()
