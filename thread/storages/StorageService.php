@@ -21,7 +21,7 @@ class StorageService
     private $subscribers = [];
 
     const EVENTS = [
-        'set' => 'set', 'delete' => 'delete'
+        'set' => 'set', 'delete' => 'delete', 'clear' => 'clear',
     ];
 
     /**
@@ -66,7 +66,55 @@ class StorageService
     {
         $r = $this->storage->delete($key);
         if ($r == true) {
-            $this->invoke(self::EVENTS['set'], [$key]);
+            $this->invoke(self::EVENTS['delete'], [$key]);
+        }
+        return $r;
+    }
+
+    /**
+     * @return bool
+     */
+    public function clear(): bool
+    {
+        $r = $this->storage->clear();
+        if ($r == true) {
+            $this->invoke(self::EVENTS['clear'], []);
+        }
+        return $r;
+    }
+
+    /**
+     * @param array $keys
+     * @param null $default
+     * @return array
+     */
+    public function getMultiple(array $keys, $default = null): array
+    {
+        return $this->storage->getMultiple($keys, $default);
+    }
+
+    /**
+     * @param array $values
+     * @return bool
+     */
+    public function setMultiple(array $values): bool
+    {
+        $r = $this->storage->setMultiple($values);
+        if ($r == true) {
+            $this->invoke(self::EVENTS['set'], array_keys($values));
+        }
+        return $r;
+    }
+
+    /**
+     * @param array $keys
+     * @return bool
+     */
+    public function deleteMultiple(array $keys): bool
+    {
+        $r = $this->storage->deleteMultiple($keys);
+        if ($r == true) {
+            $this->invoke(self::EVENTS['delete'], $keys);
         }
         return $r;
     }
@@ -93,7 +141,8 @@ class StorageService
     public function remSubscriber(StorageSubscriberInterface $subscriber): bool
     {
         $r = false;
-        foreach ($this->subscribers as $k => $item) {
+        $generator = $this->getSubscribers();
+        foreach ($generator as $k => $item) {
             if ($subscriber == $item) {
                 unset($this->subscribers[$k]);
                 $r = true;
@@ -111,7 +160,8 @@ class StorageService
     public function hasSubscriber(StorageSubscriberInterface $subscriber): bool
     {
         $r = false;
-        foreach ($this->subscribers as $item) {
+        $generator = $this->getSubscribers();
+        foreach ($generator as $item) {
             if ($subscriber == $item) {
                 $r = true;
                 break;

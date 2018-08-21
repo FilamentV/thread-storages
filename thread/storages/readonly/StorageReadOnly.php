@@ -16,7 +16,8 @@ class StorageReadOnly implements StorageReadOnlyInterface
     private $data = [];
 
     /**
-     * StorageMemory constructor.
+     * StorageReadOnly constructor.
+     * @param array $data
      */
     public function __construct(array $data)
     {

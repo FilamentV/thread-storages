@@ -16,10 +16,12 @@ class StorageSimple implements StorageSimpleInterface
     private $data = [];
 
     /**
-     * StorageMemory constructor.
+     * StorageSimple constructor.
+     * @param array $data
      */
-    public function __construct()
+    public function __construct(array $data)
     {
+        $this->data = $data;
         $this->init();
     }
 
