@@ -13,18 +13,27 @@ use thread\storages\simple\StorageSimple;
  */
 class StorageSimpleTest extends TestCase
 {
+    /**
+     *
+     */
     public function testCreate()
     {
         $obj = new StorageSimple();
         $this->assertInstanceOf(StorageSimpleInterface::class, $obj, 'it is not a StorageSimpleInterface');
     }
 
+    /**
+     *
+     */
     public function testSet()
     {
         $obj = new StorageSimple();
         $this->assertTrue($obj->set('0', 'one'), __CLASS__ . '/' . __LINE__);
     }
 
+    /**
+     *
+     */
     public function testGetAndHas()
     {
         $obj = new StorageSimple();

@@ -2,6 +2,7 @@
 
 namespace thread\storages;
 
+use thread\storages\interfaces\StoragesReadOnlyServiceInterface;
 use thread\storages\readonly\interfaces\StorageReadOnlyInterface;
 
 /**
@@ -11,7 +12,7 @@ use thread\storages\readonly\interfaces\StorageReadOnlyInterface;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class StoragesReadOnlyService
+class StoragesReadOnlyService implements StoragesReadOnlyServiceInterface
 {
     /**
      * @var array

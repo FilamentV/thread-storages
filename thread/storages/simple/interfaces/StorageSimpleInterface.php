@@ -65,4 +65,14 @@ interface StorageSimpleInterface
      * @return mixed
      */
     public function init();
+
+    /**
+     * @return array
+     */
+    public function getAllData(): array;
+
+    /**
+     * @return array
+     */
+    public function getKeys(): array;
 }

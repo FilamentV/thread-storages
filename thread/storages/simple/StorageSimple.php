@@ -138,7 +138,7 @@ class StorageSimple implements StorageSimpleInterface
     /**
      * @return array
      */
-    public function getData()
+    public function getAllData(): array
     {
         return $this->data;
     }
@@ -146,7 +146,7 @@ class StorageSimple implements StorageSimpleInterface
     /**
      * @return array
      */
-    public function getKeys()
+    public function getKeys(): array
     {
         return array_keys($this->data);
     }
