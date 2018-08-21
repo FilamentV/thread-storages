@@ -115,6 +115,39 @@ class StoragesSimpleService
     }
 
     /**
+     * @param null $default
+     * @return mixed|null
+     */
+    public function getAllData($default = null)
+    {
+        if (!$this->hasStorage($this->currency)) {
+            return $default;
+        }
+        /**
+         * @var $storage StorageSimpleInterface
+         */
+        $storage = $this->storages[$this->currency];
+        return $storage->getAllData();
+    }
+
+    /**
+     * @param string $storage
+     * @param null $default
+     * @return mixed|null
+     */
+    public function getAllStorageData(string $storage, $default = null)
+    {
+        if (!$this->hasStorage($storage)) {
+            return $default;
+        }
+        /**
+         * @var $s StorageSimpleInterface
+         */
+        $s = $this->storages[$storage];
+        return $s->getAllData();
+    }
+
+    /**
      * @param string $key
      * @return bool
      */
